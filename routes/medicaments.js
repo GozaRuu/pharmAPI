@@ -27,7 +27,7 @@ router.get('/:name', async (req, res) => {
       'medicaments.id'
     )
     .where({ 'medicaments.name': medicament })
-  res.setHeader('Access-Control-Allow-Origin', 'http://www-dev.doctolib.fr')
+  res.setHeader('Access-Control-Allow-Origin', 'https://www-dev.doctolib.fr')
   res.json(data)
 })
 
