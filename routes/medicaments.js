@@ -12,7 +12,8 @@ router.get('/:name', async (req, res) => {
       'pharmacies.long as pharmacy_long',
       'medicaments.description as medicament_description',
       'medicaments.name as medicament_name',
-      'pharmacy_medicament.count'
+      'pharmacy_medicament.count',
+      'pharmacy_medicament.price'
     )
     .from('pharmacies')
     .leftJoin(
