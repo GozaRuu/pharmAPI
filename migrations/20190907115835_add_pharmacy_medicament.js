@@ -11,6 +11,7 @@ exports.up = function(knex) {
       .unsigned()
       .references('id')
       .inTable('medicaments')
+    table.integer('count')
   })
 }
 
