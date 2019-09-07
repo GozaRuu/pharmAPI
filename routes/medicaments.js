@@ -5,7 +5,27 @@ const knex = require('../knexClient')
 /* GET users listing. */
 router.get('/:name', async (req, res) => {
   const medicament = req.params.name
-  const data = await knex.select('*').from('pharmacies')
+  const data = await knex
+    .select(
+      'pharmacies.name as pharmacy_name',
+      'pharmacies.lat as pharmacy_lat',
+      'pharmacies.long as pharmacy_long',
+      'medicaments.description as medicament_description',
+      'medicaments.name as medicament_name',
+      'pharmacy_medicament.count'
+    )
+    .from('pharmacies')
+    .leftJoin(
+      'pharmacy_medicament',
+      'pharmacy_medicament.pharmacyId',
+      'pharmacies.id'
+    )
+    .leftJoin(
+      'medicaments',
+      'pharmacy_medicament.medicamentId',
+      'medicaments.id'
+    )
+    .where({ 'medicaments.name': medicament })
 
   res.json(data)
 })

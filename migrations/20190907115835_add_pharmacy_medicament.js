@@ -1,5 +1,5 @@
 exports.up = function(knex) {
-  return knex.schema.createTable('parmacy_medicament', function(table) {
+  return knex.schema.createTable('pharmacy_medicament', function(table) {
     table.increments().primary()
     table
       .integer('pharmacyId')
@@ -12,9 +12,10 @@ exports.up = function(knex) {
       .references('id')
       .inTable('medicaments')
     table.integer('count')
+    table.integer('price')
   })
 }
 
 exports.down = function(knex) {
-  return knex.schema.dropTable('parmacy_medicament')
+  return knex.schema.dropTable('pharmacy_medicament')
 }
